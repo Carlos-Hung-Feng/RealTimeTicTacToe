@@ -1,19 +1,23 @@
-const express = require('express');
-const app = express();
+console.log( "ready!" );
 
-const path = require('path');
-const http = require('http');
-const {Server} = require('socket.io');
+const socket = io();
 
-const server = http.createServer(app);
+var userName;
 
-const io = new Server(server);
-app.use(express.static(path.resolve('')));
+const findPlayer = () => {
+    userName = document.getElementById("name").value;
 
-app.get('/', (req, res) => {
-    return res.sendFile('index.html');
-});
+    document.getElementById("user").innerText = userName;
 
-server.listen(3000, () => {
- console.log('port connected to 3000');
-})
+    if(userName === null || userName === ''){
+        alert("Se necesita un nombre para iniciar la partida.");
+    }
+    else{
+        socket.emit('find', {name:userName});
+
+        document.getElementById('loading').classList.remove("hide");
+        document.getElementById('loading').classList.add("show");
+
+        document.getElementById('find').disabled=true;
+    }
+}
