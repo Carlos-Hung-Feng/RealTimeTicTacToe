@@ -8,44 +8,43 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Tic Tac Toe</h1>
+    <div class="gameContainer">
+        <h1>Tic Tac Toe</h1>
 
-    <div>
-        <p id="userCont" class="hide">Tú : <span id="user"></span></p>
-        <p id="oppoUserCont" class="hide">Oponente : <span id="oppoUser"></span></p>
-    </div>
-    <br/>
+        <div>
+            <p id="userCont" class="hide">Tú : <span id="user"></span></p>
+            <p id="oppUserCont" class="hide">Oponente : <span id="oppUser"></span></p>
+        </div>
+        <br/>
 
-    <p id="valueCont" class="hide">Estas jugando como <span id="value"></span></p>
-    <br/>
-    <p id="turn" class="hide">Turno de X</p>
+        <p id="valueCont" class="hide">Estas jugando como <span id="value"></span></p>
+        <br/>
+        <p id="turn" class="hide">Turno de X</p>
 
-    <div>
-        <label id="nameTextHint">Ingrese un nombre</label>
-        <input type="text" placeholder="Nombre" id="name" autocomplete="off">
-    </div>
+        <div>
+            <label id="nameTextHint">Ingrese un nombre</label>
+            <input type="text" placeholder="Nombre" id="name" autocomplete="off">
+        </div>
 
-    <button id="find">Iniciar una partida </button>
-    <img src="/Images/Loading.gif" id="loading" alt="loading gif" class="hide">
+        <button id="find" onclick="findPlayer()">Iniciar una partida </button>
+        <img src="/Images/Loading.gif" id="loading" alt="loading gif" class="hide" height="150px">
 
-    <div id="container" class="hide">
-        <div id="btnContainer">
-            <button id="btn1" class="btn"></button>
-            <button id="btn2" class="btn"></button>
-            <button id="btn3" class="btn"></button>
-            <button id="btn4" class="btn"></button>
-            <button id="btn5" class="btn"></button>
-            <button id="btn6" class="btn"></button>
-            <button id="btn7" class="btn"></button>
-            <button id="btn8" class="btn"></button>
-            <button id="btn9" class="btn"></button>
+        <div id="container" class="hide">
+            <div id="btnContainer">
+                <button id="btn1" class="btn"></button>
+                <button id="btn2" class="btn"></button>
+                <button id="btn3" class="btn"></button>
+                <button id="btn4" class="btn"></button>
+                <button id="btn5" class="btn"></button>
+                <button id="btn6" class="btn"></button>
+                <button id="btn7" class="btn"></button>
+                <button id="btn8" class="btn"></button>
+                <button id="btn9" class="btn"></button>
+            </div>
         </div>
     </div>
 
     <script src="node_modules/socket.io/client-dist/socket.io.js"></script>
     <script type="text/javascript" src="index.js"></script> 
-    <!-- <script>
-        const socket = io();
-    </script> -->
 </body>
 </html>
