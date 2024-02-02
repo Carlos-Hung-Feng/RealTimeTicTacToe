@@ -36,7 +36,7 @@ socket.on('find', (e) => {
     hideContentById('find');
     hideContentById('nameTextHint');
 
-    document.getElementById('turn').innerText = 'Turno de X'
+    document.getElementById('turn').innerText = 'Turno de X';
 
     let oppName
     let value
@@ -84,12 +84,10 @@ socket.on('playing', (e) => {
     if (p1MarkedPosition != ''){
         document.getElementById(`${p1MarkedPosition}`).innerText='X';
         document.getElementById(`${p1MarkedPosition}`).disabled = true;
-        document.getElementById(`${p1MarkedPosition}`).style.color = 'black';
     }
     if (p2MarkedPosition != ''){
         document.getElementById(`${p2MarkedPosition}`).innerText='O';
         document.getElementById(`${p2MarkedPosition}`).disabled = true;
-        document.getElementById(`${p2MarkedPosition}`).style.color = 'black';
     }
 
     
@@ -139,8 +137,6 @@ const check = (name, sum) => {
         
         let winner;
         if (sum % 2 == 0) {
-            // showContentById('userWinnerCrown');
-            // alert('Ganó X 🎉🎊');
             let userValue = document.getElementById('value').innerText;
             if (userValue == 'X'){
                 winner = document.getElementById('user').innerText;
@@ -166,11 +162,13 @@ const check = (name, sum) => {
         alert(`Ganó ${winner} 🎉🎊`);
         showContentById('refresh');
         changeButtonState(true);
+        document.getElementById('turn').innerText = 'Partida finalizada';
     }
     else if (sum === 10){
         alert('Empate 🤷‍♂️');
         showContentById('refresh');
         changeButtonState(true);
+        document.getElementById('turn').innerText = 'Partida finalizada';
     }
 }
 

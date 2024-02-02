@@ -20,6 +20,7 @@ body {
 
 .gameContainer{
     background-color: #ffffff;
+    /* Ajustar el tamaño para que sea dinamico */
     width: 545px;
     border-radius: 50px;
     padding: 40px;
