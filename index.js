@@ -136,18 +136,47 @@ const check = (name, sum) => {
         (btn3 != '' && btn3 == btn5 && btn5 == btn7)){  // diagonal /
         
         socket.emit('gameOver', {name: name});
-
-        sum % 2 == 0 ? alert('Ganó X 🎉🎊') : alert('Ganó O 🎉🎊');
-
-        location.reload();
+        
+        let winner;
+        if (sum % 2 == 0) {
+            // showContentById('userWinnerCrown');
+            // alert('Ganó X 🎉🎊');
+            let userValue = document.getElementById('value').innerText;
+            if (userValue == 'X'){
+                winner = document.getElementById('user').innerText;
+                showContentById('userWinnerCrown');
+            }
+            else{
+                winner = document.getElementById('oppUser').innerText;
+                showContentById('oppUserWinnerCrown');
+            }
+            alert(`Ganó ${winner} 🎉🎊`);
+        }
+        else{
+            let userValue = document.getElementById('value').innerText;
+            if (userValue == 'O'){
+                winner = document.getElementById('user').innerText;
+                showContentById('userWinnerCrown');
+            }
+            else{
+                winner = document.getElementById('oppUser').innerText;
+                showContentById('oppUserWinnerCrown');
+            }
+        }
+        alert(`Ganó ${winner} 🎉🎊`);
+        showContentById('refresh');
+        changeButtonState(true);
     }
     else if (sum === 10){
         alert('Empate 🤷‍♂️');
-
-        location.reload();
+        showContentById('refresh');
+        changeButtonState(true);
     }
 }
 
+const refreshPage = () => {
+    location.reload();
+}
 
 const showContentById = (tagId) => {
     document.getElementById(`${tagId}`).classList.remove("hide");

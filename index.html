@@ -9,17 +9,21 @@
 </head>
 <body>
     <div class="gameContainer">
+        <button id="refresh" onclick="refreshPage()" class="hide">Otra partida</button>
+
         <div class="gameContainerHeader">
             <b>Tic Tac Toe</b>
         </div>
 
         <div class="userContainer">
             <div id="userCont" class="userNameContainer hide">
+                <img src="/Images/crown_king_queen_icon_161518.png" alt="winnerCrown" id="userWinnerCrown" class="winnerCrown hide" height="50px">
                 <label class="title">Tú</label>
                 <br/>
                 <span id="user" class="userName">test</span>
             </div>
             <div id="oppUserCont" class="oppnNameContainer hide">
+                <img src="/Images/crown_king_queen_icon_161518.png" alt="winnerCrown" id="oppUserWinnerCrown" class="winnerCrown hide" height="50px">
                 <label class="title">Oponente</label>
                 <br/>
                 <span id="oppUser" class="userName">test</span>
