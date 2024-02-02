@@ -27,6 +27,7 @@ socket.on('find', (e) => {
     showContentById('userCont');
     showContentById('oppUserCont');
     showContentById('valueCont');
+    showContentById('oppnValueCont');
     showContentById('container');
     showContentById('turn');
 
@@ -47,6 +48,7 @@ socket.on('find', (e) => {
 
     document.getElementById('oppUser').innerText = oppName;
     document.getElementById('value').innerText = value;
+    document.getElementById('oppnValue').innerText = value == 'O' ? 'X' : 'O';
     
     if (value != document.getElementById('turn').innerText.split(' ').slice(-1)){
         changeButtonState(true);

@@ -9,26 +9,45 @@
 </head>
 <body>
     <div class="gameContainer">
-        <h1>Tic Tac Toe</h1>
+        <div class="gameContainerHeader">
+            <b>Tic Tac Toe</b>
+        </div>
 
-        <div>
-            <p id="userCont" class="hide">Tú : <span id="user"></span></p>
-            <p id="oppUserCont" class="hide">Oponente : <span id="oppUser"></span></p>
+        <div class="userContainer">
+            <div id="userCont" class="userNameContainer hide">
+                <label class="title">Tú</label>
+                <br/>
+                <span id="user" class="userName">test</span>
+            </div>
+            <div id="oppUserCont" class="oppnNameContainer hide">
+                <label class="title">Oponente</label>
+                <br/>
+                <span id="oppUser" class="userName">test</span>
+            </div>
         </div>
         <br/>
 
-        <p id="valueCont" class="hide">Estas jugando como <span id="value"></span></p>
-        <br/>
-        <p id="turn" class="hide">Turno de X</p>
-
-        <div>
+        <div id="valueCont" class="hide"> 
+            <span id="value" class="userValue"></span>
+        </div>
+        
+        <div id="oppnValueCont" class="hide"> 
+            <span id="oppnValue" class="oppnValue"></span>
+        </div>
+        
+        <div class="insertNameContainer">
             <label id="nameTextHint">Ingrese un nombre</label>
+            <br/>
             <input type="text" placeholder="Nombre" id="name" autocomplete="off">
         </div>
 
         <button id="find" onclick="findPlayer()">Iniciar una partida </button>
-        <img src="/Images/Loading.gif" id="loading" alt="loading gif" class="hide" height="150px">
+        <div class="imgContainer">
+            <img src="/Images/Loading.gif" id="loading" alt="loading gif" class="hide" height="150px">
+        </div>
 
+        
+        <label id="turn" class="hide">Turno de X</label>
         <div id="container" class="hide">
             <div id="btnContainer">
                 <button id="btn1" class="btn"></button>

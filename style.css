@@ -5,3 +5,150 @@
 .show {
     display: block;
 }
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #4f3c3e;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.gameContainer{
+    background-color: #ffffff;
+    width: 545px;
+    border-radius: 50px;
+    padding: 40px;
+    text-align: center;
+    position: relative;
+}
+
+.gameContainerHeader {
+    color: #4f3c3e;
+    font-size: 60px;
+    margin-bottom: 40px;
+}
+
+.insertNameContainer {
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.imgContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.userContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.userNameContainer {
+    background-color: #0EB1D2;
+    min-width: 140px;
+    border-radius: 25px;
+    padding: 10px;
+
+}
+
+#valueCont {
+    position: absolute;
+    font-size: 50px;
+    font-weight: bold;
+    color: #10d1f8;
+    left: 60px;
+}
+
+.oppnNameContainer {
+    background-color: #F283B6;
+    min-width: 140px;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+#oppnValueCont {
+    position: absolute;
+    font-size: 50px;
+    font-weight: bold;
+    color: #ff8ab7;
+    right: 60px;
+}
+
+.title {
+    font-size: 25px;
+    font-weight: 700;
+    color: #4f3c3e;
+}
+
+.userName {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#turn {
+    font-size: 50px;
+    font-weight: bold;
+    color: #ffcb47;
+    margin-top: 15px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#btnContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 5px;
+    justify-content: center;
+}
+
+.btn {
+    width: 100px;
+    height: 100px;
+    font-size: 75px;
+    color: #ffffff !important;
+    background-color: #4f3c3e;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 20px;
+}
+
+.btn:hover {
+    background-color: #866668;
+}
+
+input {
+    padding: 5px;
+    margin-top: 10px;
+    font-size: 16px;
+    border-radius: 20px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #4f3c3e;
+    background-color: #ffcb47;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 50px;
+}
+
+button:hover {
+    background-color: #ffd747;
+}
