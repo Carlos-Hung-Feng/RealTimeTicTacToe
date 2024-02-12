@@ -21,6 +21,12 @@ const findPlayer = () => {
 
 socket.on('find', (e) => {
     let playersArray = e.players
+    
+    const foundObj = playersArray.find(obj => obj.p1.name === `${userName}` || obj.p2.name === `${userName}`)
+    
+    if(foundObj == null){
+        return;
+    }
 
     console.log(playersArray);
 
@@ -41,7 +47,6 @@ socket.on('find', (e) => {
     let oppName
     let value
 
-    const foundObj = playersArray.find(obj => obj.p1.name === `${userName}` || obj.p2.name === `${userName}`)
 
     foundObj.p1.name === userName ? oppName = foundObj.p2.name : oppName = foundObj.p1.name;
     foundObj.p2.name === userName ? value = foundObj.p2.value : value = foundObj.p1.value;
@@ -70,6 +75,10 @@ document.querySelectorAll('.btn').forEach(e => {
 socket.on('playing', (e) => {
 
     const foundObj = (e.players).find(obj => obj.p1.name === `${userName}` || obj.p2.name === `${userName}`)
+
+    if(foundObj == null){
+        return;
+    }
 
     p1MarkedPosition = foundObj.p1.markedPosition;
     p2MarkedPosition = foundObj.p2.markedPosition;
@@ -146,7 +155,7 @@ const check = (name, sum) => {
                 winner = document.getElementById('oppUser').innerText;
                 showContentById('oppUserWinnerCrown');
             }
-            alert(`Ganó ${winner} 🎉🎊`);
+            document.getElementById('turn').innerText = `Ganó ${winner} 🎉🎊`;
         }
         else{
             let userValue = document.getElementById('value').innerText;
@@ -159,18 +168,23 @@ const check = (name, sum) => {
                 showContentById('oppUserWinnerCrown');
             }
         }
-        alert(`Ganó ${winner} 🎉🎊`);
+        document.getElementById('turn').innerText = `Ganó ${winner} 🎉🎊`;
         showContentById('refresh');
         changeButtonState(true);
-        document.getElementById('turn').innerText = 'Partida finalizada';
     }
     else if (sum === 10){
-        alert('Empate 🤷‍♂️');
+        socket.emit('gameOver', {name: name});
+        
+        document.getElementById('turn').innerText = 'Empate 🤷‍♂️';
         showContentById('refresh');
         changeButtonState(true);
-        document.getElementById('turn').innerText = 'Partida finalizada';
     }
 }
+
+socket.on('nextPair', (e) => {
+
+    socket.emit('nextPair', e);
+})
 
 const refreshPage = () => {
     location.reload();

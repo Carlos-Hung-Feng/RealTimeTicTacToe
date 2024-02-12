@@ -14,8 +14,12 @@ app.get('/', (req, res) => {
     return res.sendFile('index.html');
 });
 
+const playingLimit = 3; // aqui controla la cantidad de partidas que se puede jugar
+
 let userNameArray = [];
 let playingArray = [];
+let waittingArray = [];
+let removedFromWaitting = false;
 
 io.on('connection', (socket) => {
     socket.on('find', (e) => {
@@ -40,13 +44,25 @@ io.on('connection', (socket) => {
                     sum: 1
                 }
 
-                playingArray.push(obj);
+                if(playingArray.length < playingLimit){ 
+                    playingArray.push(obj);
+                    console.log(`Matched: ${obj.p1.name} vs ${obj.p2.name}`);
+                    io.emit('find', {players: playingArray});
+                }
+                else{
+                    waittingArray.push(obj);
+                }
 
                 userNameArray.splice(0,2)
-
-                console.log(`Matched: ${obj.p1.name} vs ${obj.p2.name}`);
-                io.emit('find', {players: playingArray});
             }
+        }
+    })
+
+    socket.on('nextPair', (e) => {
+        if(e !== undefined && playingArray.length < playingLimit){
+            playingArray.push(e.nextPair);
+            console.log(`Matched: ${e.nextPair.p1.name} vs ${e.nextPair.p2.name}`);
+            io.emit('find', {players: playingArray});
         }
     })
 
@@ -68,6 +84,16 @@ io.on('connection', (socket) => {
 
     socket.on('gameOver', (e) => {
         playingArray = playingArray.filter(obj => obj.p1.name != e.name);
+
+        if (waittingArray.length > 0){
+            if (removedFromWaitting === false){
+                let nextPair = waittingArray.at(0);
+                waittingArray = waittingArray.filter(obj => obj.p1.name != nextPair.p1.name);
+                io.emit('nextPair', {nextPair: nextPair});
+            }
+            
+            removedFromWaitting = !removedFromWaitting;
+        }
     })
 
     console.log('a user connected');
