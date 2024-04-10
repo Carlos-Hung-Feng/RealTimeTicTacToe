@@ -90,43 +90,48 @@ document.querySelectorAll('.btn').forEach(e => {
 // Manejar el evento 'playing' del servidor
 socket.on('playing', (e) => {
 
-    const foundObj = (e.players).find(obj => obj.p1.name === `${userName}` || obj.p2.name === `${userName}`)
+    try{
+        const foundObj = (e.players).find(obj => obj.p1.name === `${userName}` || obj.p2.name === `${userName}`)
 
-    if(foundObj == null){
-        return;
-    }
+        if(foundObj == null){
+            return;
+        }
 
-    p1MarkedPosition = foundObj.p1.markedPosition;
-    p2MarkedPosition = foundObj.p2.markedPosition;
+        p1MarkedPosition = foundObj.p1.markedPosition;
+        p2MarkedPosition = foundObj.p2.markedPosition;
 
-    // Establecer el mensaje de turno según el estado del juego
-    if ((foundObj.sum) % 2 === 0){
-        document.getElementById('turn').innerText = 'Turno de O';
-    }
-    else {
-        document.getElementById('turn').innerText = 'Turno de X';
-    }
+        // Establecer el mensaje de turno según el estado del juego
+        if ((foundObj.sum) % 2 === 0){
+            document.getElementById('turn').innerText = 'Turno de O';
+        }
+        else {
+            document.getElementById('turn').innerText = 'Turno de X';
+        }
 
-    // Mostrar las jugadas realizadas por los jugadores en la interfaz
-    if (p1MarkedPosition != ''){
-        document.getElementById(`${p1MarkedPosition}`).innerText='X';
-        document.getElementById(`${p1MarkedPosition}`).disabled = true;
-    }
-    if (p2MarkedPosition != ''){
-        document.getElementById(`${p2MarkedPosition}`).innerText='O';
-        document.getElementById(`${p2MarkedPosition}`).disabled = true;
-    }
+        // Mostrar las jugadas realizadas por los jugadores en la interfaz
+        if (p1MarkedPosition != ''){
+            document.getElementById(`${p1MarkedPosition}`).innerText='X';
+            document.getElementById(`${p1MarkedPosition}`).disabled = true;
+        }
+        if (p2MarkedPosition != ''){
+            document.getElementById(`${p2MarkedPosition}`).innerText='O';
+            document.getElementById(`${p2MarkedPosition}`).disabled = true;
+        }
 
-    // Habilitar o deshabilitar los botones según el turno del jugador actual
-    if (document.getElementById('value').innerText != document.getElementById('turn').innerText.split(' ').slice(-1)){
-        changeButtonState(true);
-    }
-    else{
-        changeButtonState(false);
-    }
+        // Habilitar o deshabilitar los botones según el turno del jugador actual
+        if (document.getElementById('value').innerText != document.getElementById('turn').innerText.split(' ').slice(-1)){
+            changeButtonState(true);
+        }
+        else{
+            changeButtonState(false);
+        }
 
-    // Verificar si hay un ganador o empate
-    check(userName, foundObj.sum);
+        // Verificar si hay un ganador o empate
+        check(userName, foundObj.sum);
+    }
+    catch(error){
+        console.error(error);
+    }
 })
 
 // Función para cambiar el estado de los botones
@@ -209,9 +214,13 @@ const check = (name, sum) => {
 
 // Manejar el evento 'nextPair' del servidor
 socket.on('nextPair', (e) => {
-
-    // Emitir un evento 'nextPair' al servidor
-    socket.emit('nextPair', e);
+    try{
+        // Emitir un evento 'nextPair' al servidor
+        socket.emit('nextPair', e);
+    }
+    catch (error){
+        console.error(error);
+    }
 })
 
 // Función para refrescar la página
